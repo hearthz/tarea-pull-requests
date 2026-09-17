@@ -28,6 +28,11 @@
     
     <form action="/add" method="POST" class="add-form">
       <input type="text" name="text" placeholder="Nueva tarea..." required>
+      <select name="category">
+        <option value="personal">Personal</option>
+        <option value="trabajo">Trabajo</option>
+        <option value="escuela">Escuela</option>
+      </select>
       <button type="submit">Agregar</button>
     </form>
 
@@ -43,6 +48,7 @@
               <%= todo.done ? '☑️' : '⬜' %>
             </button>
           </form>
+          <span class="category">[<%= todo.category || 'sin categoría' %>]</span>
           <span class="<%= todo.done ? 'done' : '' %>"><%= todo.text %></span>
           <form action="/delete/<%= todo.id %>" method="POST" style="margin-left:auto;">
             <button type="submit" class="delete">X</button>
