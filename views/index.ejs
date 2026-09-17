@@ -31,6 +31,8 @@
       <button type="submit">Agregar</button>
     </form>
 
+    <input type="text" id="busqueda" placeholder="Buscar tarea..." onkeyup="filtrar()">
+
     <ul>
       <% todos.forEach(todo => { %>
         <li>
@@ -47,5 +49,14 @@
       <% }) %>
     </ul>
   </div>
+  <script>
+  function filtrar() {
+    const input = document.getElementById('busqueda').value.toLowerCase();
+    document.querySelectorAll('li').forEach(li => {
+      const text = li.textContent.toLowerCase();
+      li.style.display = text.includes(input) ? '' : 'none';
+    });
+  }
+  </script>
 </body>
 </html>
