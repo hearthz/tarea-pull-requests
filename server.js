@@ -23,15 +23,16 @@ fastify.get('/', async (request, reply) => {
 
 fastify.post('/add', async (request, reply) => {
   const { text, category } = request.body;
-  if (text) {
-    const newTodo = {
-      id: todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 1,
-      text,
-      category: category || 'personal',
-      done: false
-    };
-    todos.push(newTodo);
+  if (!text || text.trim().length === 0) {
+    return reply.redirect('/');
   }
+  const newTodo = {
+    id: todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 1,
+    text: text.trim(),
+    category: category || 'personal',
+    done: false
+  };
+  todos.push(newTodo);
   return reply.redirect('/');
 });
 
