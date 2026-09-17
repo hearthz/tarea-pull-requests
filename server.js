@@ -22,7 +22,7 @@ fastify.get('/', async (request, reply) => {
 });
 
 fastify.post('/add', async (request, reply) => {
-  const { text, category } = request.body;
+  const { text, category, priority, dueDate } = request.body;
   if (!text || text.trim().length === 0) {
     return reply.redirect('/');
   }
@@ -30,6 +30,8 @@ fastify.post('/add', async (request, reply) => {
     id: todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 1,
     text: text.trim(),
     category: category || 'personal',
+    priority: priority || 'baja',
+    dueDate: dueDate || null,
     done: false
   };
   todos.push(newTodo);
