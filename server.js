@@ -17,7 +17,7 @@ fastify.get('/', async (request, reply) => {
   return reply.view('index.ejs', { 
     todos, 
     title: 'Repositorio Oficial: pr-forks', 
-    author: 'Alex' 
+    author: 'Valentina' 
   });
 });
 
